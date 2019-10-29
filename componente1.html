@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Componente 1 - Selección de horarios</title>
+		<link rel="stylesheet" href="jquery-ui.min.css">
+		<script src="external/jquery/jquery.js"></script>
+		<script src="jquery-ui.min.js"></script>
+
+		<script>
+            $(document).ready(function() {
+                $("#dia1").text("HOLA1")
+                var today = new Date();
+                var next = new Date();
+                console.log(today)
+                for (i=1; i<8;  i++) {
+                    next.setDate(today.getDate()+i)
+                    $("#dia"+i).text(next.getDay()+"/"+next.getMonth()+"/"+next.getFullYear())
+                }
+            })
+                              
+            
+            $(function() {
+				$("input[type=submit]").button().click(function(event) {
+					console.log("HOLA")
+				});
+			});
+            
+            $(function() {
+                $(".selectable").selectable({
+                    stop: function() {
+                        console.log("HI")
+                        var result = $("#select-result");
+						$(".ui-selected", this).each(function() {
+							var index = $(".selectable li").index(this);
+							result.append(" #" + (index + 1 ));
+						});
+                    }
+                })
+            })
+		</script>
+	</head>
+	<body>
+        
+        <h1>Componente 1 - Selección de horarios</h1>
+        
+        <p id="feedback">
+			<span>Seleccionado: </span><span id="select-result">vacio</span>.
+		</p>
+		
+        
+        <p id="dia1">Dia 1</p>
+        <div class="buttons">
+            <ol class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ol>
+        </div>
+			
+        <p id="dia2">Dia 2</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+        <p id="dia3">Dia 3</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+        <p id="dia4">Dia 4</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+        <p id="dia5">Dia 5</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+        <p id="dia6">Dia 6</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+        <p id="dia7">Dia 7</p>
+        <div class="buttons">
+            <ul class="selectable">
+                <li class="ui-widget-content">
+                    Mañana
+                </li>
+                <li class="ui-widget-content">
+                    Tarde
+                </li>
+                <li class="ui-widget-content">
+                    Noche
+                </li>
+            </ul>
+        </div>
+        
+
+        <input type="submit" value="Enviar">
+	</body>
+</html>
