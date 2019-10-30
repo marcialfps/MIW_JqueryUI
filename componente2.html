@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Componente 1 - Selección de horarios</title>
+		<link rel="stylesheet" href="jquery-ui.min.css">
+		<script src="external/jquery/jquery.js"></script>
+		<script src="jquery-ui.min.js"></script>
+		<style>
+			#droppable {
+				width: 100px;
+				height: 40px;
+			}
+            #respuestas {
+                padding: 0;
+                  margin: 0;
+                  list-style: none;
+
+                  display: -webkit-box;
+                  display: -moz-box;
+                  display: -ms-flexbox;
+                  display: -webkit-flex;
+                  display: flex;
+
+                  -webkit-flex-flow: row wrap;
+                  justify-content: space-around;
+                            }
+			#respuestas .draggable {
+				background: tomato;
+                padding: 5px;
+                width: 100px;
+                height: 50px;
+                color: white;
+                font-weight: bold;
+                font-size: 1em;
+                text-align: center;
+			}
+		</style>
+		<script>
+			$(function() {
+				$(".draggable").draggable();
+				$("#droppable").droppable({
+					// Solo acepta el elemento con la id:  #draggable
+					accept : "#respuesta1",
+
+					// Cambio de Clase cuando esta activo
+					activeClass : "ui-state-hover",
+
+					// Cambio de Clase cuando tiene un elemento "hover"
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+        
+        <h1>Componente 2 - Preguntas y respuestas</h1>
+        
+        <div id="respuestas">
+            <div class="draggable" id="respuesta1" class="ui-widget-content">
+                <p>
+                    respuesta 1
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+            <div class="draggable" class="ui-widget-content">
+                <p>
+                    id: #draggable
+                </p>
+            </div>
+        </div>
+        
+        <div id="draggable-nonvalid" class="ui-widget-content">
+			<p>
+				id #raggable-nonvalid
+			</p>
+		</div>
+        
+        
+        <p>Pregunta 1</p>
+		<div id="droppable" class="ui-widget-header">
+			<p>
+				accept: '#respuesta1'
+			</p>
+		</div>
+        
+	</body>
+</html>
