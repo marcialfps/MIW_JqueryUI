@@ -7,9 +7,15 @@
 		<script src="external/jquery/jquery.js"></script>
 		<script src="jquery-ui.min.js"></script>
 		<style>
-			#droppable {
-				width: 100px;
-				height: 40px;
+			.droppable {
+				background: tomato;
+                padding: 5px;
+                width: 100px;
+                height: 50px;
+                color: white;
+                font-weight: bold;
+                font-size: 1em;
+                text-align: center;
 			}
             #respuestas {
                 padding: 0;
@@ -24,7 +30,7 @@
 
                   -webkit-flex-flow: row wrap;
                   justify-content: space-around;
-                            }
+            }
 			#respuestas .draggable {
 				background: tomato;
                 padding: 5px;
@@ -38,18 +44,97 @@
 		</style>
 		<script>
 			$(function() {
-				$(".draggable").draggable();
-				$("#droppable").droppable({
-					// Solo acepta el elemento con la id:  #draggable
+				$(".draggable").draggable({
+                    revert : "valid"
+                });
+				$("#pregunta1").droppable({
 					accept : "#respuesta1",
-
-					// Cambio de Clase cuando esta activo
 					activeClass : "ui-state-hover",
-
-					// Cambio de Clase cuando tiene un elemento "hover"
 					hoverClass : "ui-state-active",
 					drop : function(event, ui) {
-						$(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+						$(this).addClass("ui-state-highlight").find("p").html("PbO2");
+                        $("#respuesta1").remove();
+					}
+				});
+                $("#pregunta2").droppable({
+					accept : "#respuesta2",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("SO");
+                        $("#respuesta2").remove();
+					}
+				});
+                $("#pregunta3").droppable({
+					accept : "#respuesta3",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Cl2O");
+                        $("#respuesta3").remove();
+					}
+				});
+                $("#pregunta4").droppable({
+					accept : "#respuesta4",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Cl2O3");
+                        $("#respuesta4").remove();
+					}
+				});
+                $("#pregunta5").droppable({
+					accept : "#respuesta5",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Cl2O5");
+                        $("#respuesta5").remove();
+					}
+				});
+                $("#pregunta6").droppable({
+					accept : "#respuesta6",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Br2O");
+                        $("#respuesta6").remove();
+					}
+				});
+                $("#pregunta7").droppable({
+					accept : "#respuesta7",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Br2O3");
+                        $("#respuesta7").remove();
+					}
+				});
+                $("#pregunta8").droppable({
+					accept : "#respuesta8",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("Br2O5");
+                        $("#respuesta8").remove();
+					}
+				});
+                $("#pregunta9").droppable({
+					accept : "#respuesta9",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("I2O");
+                        $("#respuesta9").remove();
+					}
+				});
+                $("#pregunta10").droppable({
+					accept : "#respuesta10",
+					activeClass : "ui-state-hover",
+					hoverClass : "ui-state-active",
+					drop : function(event, ui) {
+						$(this).addClass("ui-state-highlight").find("p").html("I2O5");
+                        $("#respuesta10").remove();
 					}
 				});
 			});
@@ -59,71 +144,89 @@
         
         <h1>Componente 2 - Preguntas y respuestas</h1>
         
+        <h2>Indica la fórmula de cada compuesto binario.</h2>
+        
         <div id="respuestas">
+            <div class="draggable" id="respuesta2" class="ui-widget-content">
+                <p>SO</p>
+            </div>
+            <div class="draggable" id="respuesta10" class="ui-widget-content">
+                <p>I2O5</p>
+            </div>
+            <div class="draggable" id="respuesta3" class="ui-widget-content">
+                <p>Cl2O</p>
+            </div>
+            <div class="draggable" id="respuesta5" class="ui-widget-content">
+                <p>Cl2O5</p>
+            </div>
+            <div class="draggable" id="respuesta4" class="ui-widget-content">
+                <p>Cl2O3</p>
+            </div>
+            <div class="draggable" id="respuesta9" class="ui-widget-content">
+                <p>I2O</p>
+            </div>
+            <div class="draggable" id="respuesta7" class="ui-widget-content">
+                <p>Br2O3</p>
+            </div>
+            <div class="draggable" id="respuesta8" class="ui-widget-content">
+                <p>Br2O5</p>
+            </div>
+            <div class="draggable" id="respuesta6" class="ui-widget-content">
+                <p>Br2O</p>
+            </div>
             <div class="draggable" id="respuesta1" class="ui-widget-content">
-                <p>
-                    respuesta 1
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
-            </div>
-            <div class="draggable" class="ui-widget-content">
-                <p>
-                    id: #draggable
-                </p>
+                <p>PbO2</p>
             </div>
         </div>
         
-        <div id="draggable-nonvalid" class="ui-widget-content">
-			<p>
-				id #raggable-nonvalid
-			</p>
+        <p>Dióxido de plomo</p>
+		<div id="pregunta1" class="droppable" class="ui-widget-header">
+			<p></p>
 		</div>
         
+        <p>Monóxido de azufre</p>
+		<div id="pregunta2" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
         
-        <p>Pregunta 1</p>
-		<div id="droppable" class="ui-widget-header">
-			<p>
-				accept: '#respuesta1'
-			</p>
+        <p>Monóxido de dicloro </p>
+		<div id="pregunta3" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Trióxido de dicloro </p>
+		<div id="pregunta4" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Pentaóxido de dicloro </p>
+		<div id="pregunta5" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Monóxido de dibromo </p>
+		<div id="pregunta6" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Trióxido de dibromo </p>
+		<div id="pregunta7" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Pentaóxido de dibromo </p>
+		<div id="pregunta8" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Monóxido de diyodo </p>
+		<div id="pregunta9" class="droppable" class="ui-widget-header">
+			<p></p>
+		</div>
+        
+        <p>Pentaóxido de diyodo </p>
+		<div id="pregunta10" class="droppable" class="ui-widget-header">
+			<p></p>
 		</div>
         
 	</body>
