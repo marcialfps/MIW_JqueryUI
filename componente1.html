@@ -12,148 +12,115 @@
                 $("#dia1").text("HOLA1")
                 var today = new Date();
                 var next = new Date();
-                console.log(today)
+                var month = next.getMonth()+1;
                 for (i=1; i<8;  i++) {
-                    next.setDate(today.getDate()+i)
-                    $("#dia"+i).text(next.getDay()+"/"+next.getMonth()+"/"+next.getFullYear())
+                    next.setDate(today.getDate()+i);
+                    $("#dia"+i).text(next.getDate()+"/"+month+"/"+next.getFullYear());
                 }
             })
-                              
             
             $(function() {
-				$("input[type=submit]").button().click(function(event) {
-					console.log("HOLA")
+				$(".franjas").buttonset();
+			});
+                              
+            $(function() {
+                $("input[type=submit]").button().click(function(event) {
+                    $("#mensajes").empty();
+                    var dia1 = $("#franja1 :checkbox:checked").length;
+                    var dia2 = $("#franja2 :checkbox:checked").length;
+                    var dia3 = $("#franja3 :checkbox:checked").length;
+                    var dia4 = $("#franja4 :checkbox:checked").length;
+                    var dia5 = $("#franja5 :checkbox:checked").length;
+                    var dia6 = $("#franja6 :checkbox:checked").length;
+                    var dia7 = $("#franja7 :checkbox:checked").length;
+                    if(dia1 == 1 || dia2 == 1 || dia3 == 1 || dia4 == 1 || dia5 == 1 || 
+                      dia6 == 1 || dia7 == 1 ) {
+                        $("#mensajes").append("Debes de seleccionar 2 o más franjas por día. ");
+                    } else if ((dia1+dia2+dia3+dia4+dia5+dia6+dia7) <= 3) {
+                        $("#mensajes").append("Debes de seleccionar más de 3 franjas en total.");
+                    } else {
+                        $("#mensajes").append("Se ha guardado su selección.");
+                    }
 				});
 			});
             
-            $(function() {
-                $(".selectable").selectable({
-                    stop: function() {
-                        console.log("HI")
-                        var result = $("#select-result");
-						$(".ui-selected", this).each(function() {
-							var index = $(".selectable li").index(this);
-							result.append(" #" + (index + 1 ));
-						});
-                    }
-                })
-            })
 		</script>
 	</head>
 	<body>
         
         <h1>Componente 1 - Selección de horarios</h1>
         
-        <p id="feedback">
-			<span>Seleccionado: </span><span id="select-result">vacio</span>.
-		</p>
-		
+        <p id="mensajes"></p>
         
         <p id="dia1">Dia 1</p>
-        <div class="buttons">
-            <ol class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ol>
+        <div id="franja1" class="franjas">
+            <input type="checkbox" id="1m">
+			<label for="1m">Mañana</label>
+			<input type="checkbox" id="1t">
+			<label for="1t">Tarde</label>
+			<input type="checkbox" id="1n">
+			<label for="1n">Noche</label>
         </div>
 			
         <p id="dia2">Dia 2</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja2" class="franjas">
+            <input type="checkbox" id="2m">
+			<label for="2m">Mañana</label>
+			<input type="checkbox" id="2t">
+			<label for="2t">Tarde</label>
+			<input type="checkbox" id="2n">
+			<label for="2n">Noche</label>
         </div>
         
         <p id="dia3">Dia 3</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja3" class="franjas">
+            <input type="checkbox" id="3m">
+			<label for="3m">Mañana</label>
+			<input type="checkbox" id="3t">
+			<label for="3t">Tarde</label>
+			<input type="checkbox" id="3n">
+			<label for="3n">Noche</label>
         </div>
         
         <p id="dia4">Dia 4</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja4" class="franjas">
+            <input type="checkbox" id="4m">
+			<label for="4m">Mañana</label>
+			<input type="checkbox" id="4t">
+			<label for="4t">Tarde</label>
+			<input type="checkbox" id="4n">
+			<label for="4n">Noche</label>
         </div>
         
         <p id="dia5">Dia 5</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja5" class="franjas">
+            <input type="checkbox" id="5m">
+			<label for="5m">Mañana</label>
+			<input type="checkbox" id="5t">
+			<label for="5t">Tarde</label>
+			<input type="checkbox" id="5n">
+			<label for="5n">Noche</label>
         </div>
         
         <p id="dia6">Dia 6</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja6" class="franjas">
+            <input type="checkbox" id="6m">
+			<label for="6m">Mañana</label>
+			<input type="checkbox" id="6t">
+			<label for="6t">Tarde</label>
+			<input type="checkbox" id="6n">
+			<label for="6n">Noche</label>
         </div>
         
         <p id="dia7">Dia 7</p>
-        <div class="buttons">
-            <ul class="selectable">
-                <li class="ui-widget-content">
-                    Mañana
-                </li>
-                <li class="ui-widget-content">
-                    Tarde
-                </li>
-                <li class="ui-widget-content">
-                    Noche
-                </li>
-            </ul>
+        <div id="franja7" class="franjas">
+            <input type="checkbox" id="7m">
+			<label for="7m">Mañana</label>
+			<input type="checkbox" id="7t">
+			<label for="7t">Tarde</label>
+			<input type="checkbox" id="7n">
+			<label for="7n">Noche</label>
         </div>
-        
 
         <input type="submit" value="Enviar">
 	</body>
