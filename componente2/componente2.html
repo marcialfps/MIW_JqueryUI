@@ -2,50 +2,54 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Componente 1 - Selección de horarios</title>
-		<link rel="stylesheet" href="jquery-ui.min.css">
-		<script src="external/jquery/jquery.js"></script>
-		<script src="jquery-ui.min.js"></script>
+		<title>Componente 2 - Preguntas y respuestas</title>
+		<link rel="stylesheet" href="../jquery-ui.min.css">
+		<script src="../external/jquery/jquery.js"></script>
+		<script src="../jquery-ui.min.js"></script>
 		<style>
 			.droppable {
-				background: tomato;
-                padding: 5px;
-                width: 100px;
-                height: 50px;
-                color: white;
-                font-weight: bold;
-                font-size: 1em;
-                text-align: center;
+				background: white;
+                border-color: blue;
+                border-style: solid;
+                border-width: medium;
 			}
             #respuestas {
-                padding: 0;
-                  margin: 0;
-                  list-style: none;
-
-                  display: -webkit-box;
-                  display: -moz-box;
-                  display: -ms-flexbox;
-                  display: -webkit-flex;
-                  display: flex;
-
-                  -webkit-flex-flow: row wrap;
-                  justify-content: space-around;
+                list-style: none;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-flex-flow: row wrap;
+                justify-content: space-around;
             }
 			#respuestas .draggable {
 				background: tomato;
+			}
+            .droppable, #respuestas .draggable {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 padding: 5px;
                 width: 100px;
-                height: 50px;
+                height: 30px;
                 color: white;
                 font-weight: bold;
-                font-size: 1em;
-                text-align: center;
-			}
+            }
+            .ui-state-highlight {
+                background: green;
+            }
+            .fila {
+                display: flex;
+            }
+            .columna {
+              flex: 50%;
+            }
 		</style>
 		<script>
 			$(function() {
 				$(".draggable").draggable({
-                    revert : "valid"
+                    revert : "invalid"
                 });
 				$("#pregunta1").droppable({
 					accept : "#respuesta1",
@@ -54,6 +58,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("PbO2");
                         $("#respuesta1").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta2").droppable({
@@ -63,6 +68,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("SO");
                         $("#respuesta2").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta3").droppable({
@@ -72,6 +78,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Cl2O");
                         $("#respuesta3").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta4").droppable({
@@ -81,6 +88,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Cl2O3");
                         $("#respuesta4").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta5").droppable({
@@ -90,6 +98,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Cl2O5");
                         $("#respuesta5").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta6").droppable({
@@ -99,6 +108,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Br2O");
                         $("#respuesta6").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta7").droppable({
@@ -108,6 +118,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Br2O3");
                         $("#respuesta7").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta8").droppable({
@@ -117,6 +128,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("Br2O5");
                         $("#respuesta8").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta9").droppable({
@@ -126,6 +138,7 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("I2O");
                         $("#respuesta9").remove();
+                        comprobarFinalizado();
 					}
 				});
                 $("#pregunta10").droppable({
@@ -135,9 +148,16 @@
 					drop : function(event, ui) {
 						$(this).addClass("ui-state-highlight").find("p").html("I2O5");
                         $("#respuesta10").remove();
+                        comprobarFinalizado();
 					}
 				});
 			});
+            
+            function comprobarFinalizado() {
+                if ($("#respuestas").children().length == 0) {
+                    $("#mensajes").append("Has respondido todas las preguntas.");
+                }
+            }
 		</script>
 	</head>
 	<body>
@@ -145,6 +165,8 @@
         <h1>Componente 2 - Preguntas y respuestas</h1>
         
         <h2>Indica la fórmula de cada compuesto binario.</h2>
+        
+        <p id="mensajes"></p>
         
         <div id="respuestas">
             <div class="draggable" id="respuesta2" class="ui-widget-content">
@@ -179,55 +201,60 @@
             </div>
         </div>
         
-        <p>Dióxido de plomo</p>
-		<div id="pregunta1" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Monóxido de azufre</p>
-		<div id="pregunta2" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Monóxido de dicloro </p>
-		<div id="pregunta3" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Trióxido de dicloro </p>
-		<div id="pregunta4" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Pentaóxido de dicloro </p>
-		<div id="pregunta5" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Monóxido de dibromo </p>
-		<div id="pregunta6" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Trióxido de dibromo </p>
-		<div id="pregunta7" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Pentaóxido de dibromo </p>
-		<div id="pregunta8" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Monóxido de diyodo </p>
-		<div id="pregunta9" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
-        <p>Pentaóxido de diyodo </p>
-		<div id="pregunta10" class="droppable" class="ui-widget-header">
-			<p></p>
-		</div>
-        
+        <div class="fila">
+            <div class="columna">
+                <p>Dióxido de plomo</p>
+                <div id="pregunta1" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Monóxido de azufre</p>
+                <div id="pregunta2" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Monóxido de dicloro </p>
+                <div id="pregunta3" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Trióxido de dicloro </p>
+                <div id="pregunta4" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Pentaóxido de dicloro </p>
+                <div id="pregunta5" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="columna">
+                <p>Monóxido de dibromo </p>
+                <div id="pregunta6" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Trióxido de dibromo </p>
+                <div id="pregunta7" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Pentaóxido de dibromo </p>
+                <div id="pregunta8" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Monóxido de diyodo </p>
+                <div id="pregunta9" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+
+                <p>Pentaóxido de diyodo </p>
+                <div id="pregunta10" class="droppable" class="ui-widget-header">
+                    <p></p>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>

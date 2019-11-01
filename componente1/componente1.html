@@ -3,13 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Componente 1 - Selección de horarios</title>
-		<link rel="stylesheet" href="jquery-ui.min.css">
-		<script src="external/jquery/jquery.js"></script>
-		<script src="jquery-ui.min.js"></script>
-
+		<link rel="stylesheet" href="../jquery-ui.min.css">
+		<script src="../external/jquery/jquery.js"></script>
+		<script src="../jquery-ui.min.js"></script>
+        <style>
+            #enviar {
+                margin-top: 10px;
+            }
+        </style>
 		<script>
             $(document).ready(function() {
-                $("#dia1").text("HOLA1")
                 var today = new Date();
                 var next = new Date();
                 var month = next.getMonth()+1;
@@ -122,6 +125,6 @@
 			<label for="7n">Noche</label>
         </div>
 
-        <input type="submit" value="Enviar">
+        <input id="enviar" type="submit" value="Enviar">
 	</body>
 </html>

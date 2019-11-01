@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Componente 3 - Juego de cartas</title>
+		<link rel="stylesheet" href="../jquery-ui.min.css">
+		<script src="../external/jquery/jquery.js"></script>
+		<script src="../jquery-ui.min.js"></script>
+        <style>
+            .selectable .ui-selectee {
+                background: white;
+                border-color: white;
+            }
+            .selectable .ui-selecting {
+				background: #FECA40;
+			}
+			.selectable .ui-selected {
+				color: white;
+			}
+			.selectable {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+				width: 60%;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+ 
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+  
+                -webkit-flex-flow: row wrap;
+                justify-content: space-around;
+			}
+			.selectable li {
+				margin: 3px;
+				padding: 0.4em;
+				font-size: 1.4em;
+                width: 100px;
+				height: 10%;
+			}
+            .selectable li img {
+                padding: 5px;
+                width: 100%;
+                height: 100%;
+                color: white;
+			}
+		</style>
+		<script>
+            function barajar() {
+                for (i = 5; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i+1));
+                    var aux = cartas2[i];
+                    cartas2[i] = cartas2[j];
+                    cartas2[j] = aux;
+                }
+            }
+            
+            cartas = ['bastos', 'caballo', 'espada', 'oro', 'rey', 'sota'];
+            cartas2 = ['bastos', 'caballo', 'espada', 'oro', 'rey', 'sota'];
+            barajar();
+            
+            var pulsaciones = 0;
+            
+            
+            $(function() {
+                $("#fila1").selectable({
+                    selected: function() {
+                        $(".ui-selected", this).each(function() {
+                            var index = $("#fila1 li").index(this);
+                            var carta = cartas[index];
+                            $("#fila1 .carta".concat(index)).find("img").attr("src","../baraja/".concat(carta,".jpg"));
+                            pulsaciones++;
+                            comprobarCartas();
+                        })
+                    },
+                    unselecting: function() {
+                        $(".ui-unselecting", this).each(function() {
+                            var index = $("#fila1 li").index(this);
+                            var carta = cartas[index];
+                            $("#fila1 .carta".concat(index)).find("img").attr("src","../baraja/atras.jpg");
+                        })
+                    }
+                });
+                
+                $("#fila2").selectable({
+                    selected: function() {
+                        $(".ui-selected", this).each(function() {
+                            var index = $("#fila2 li").index(this);
+                            var carta = cartas2[index];
+                            $("#fila2 .carta".concat(index)).find("img").attr("src","../baraja/".concat(carta,".jpg"));
+                            pulsaciones++;
+                            comprobarCartas();
+                        })
+                    },
+                    unselecting: function() {
+                        $(".ui-unselecting", this).each(function() {
+                            var index = $("#fila2 li").index(this);
+                            var carta = cartas2[index];
+                            $("#fila2 .carta".concat(index)).find("img").attr("src","../baraja/atras.jpg");
+                        })
+                    }
+                });
+			});
+            
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            
+            async function comprobarCartas() {
+                var carta1 = $("#fila1 .ui-selected").index();
+                var carta2 = $("#fila2 .ui-selected").index();
+                if (cartas[carta1] == cartas2[carta2]) {
+                    $("#fila1 .ui-selected").addClass("resuelto");
+                    $("#fila2 .ui-selected").addClass("resuelto");
+                    $("#fila1 .ui-selected").removeClass("ui-selected");
+                    $("#fila2 .ui-selected").removeClass("ui-selected");
+                } else if (carta1 !== -1 && carta2 !== -1) {
+                    await delay(1000);
+                    $("#fila1 .ui-selected").find("img").attr("src","../baraja/atras.jpg");
+                    $("#fila2 .ui-selected").find("img").attr("src","../baraja/atras.jpg");
+                    $("#fila1 .ui-selected").removeClass("ui-selected");
+                    $("#fila2 .ui-selected").removeClass("ui-selected"); 
+                } if ($(".resuelto").length == 12) {
+                    $("#mensajes").append("¡Has completado el juego! Pulsaciones: "+pulsaciones);
+                    $("#fila1").selectable("disable");
+                    $("#fila2").selectable("disable");
+                }
+            }
+		</script>
+	</head>
+	<body>
+        
+        <h1>Componente 3 - Juego de cartas</h1>
+        
+        <p id="mensajes"></p>
+        
+        <ol class="selectable" id="fila1">
+			<li class="ui-widget-content carta0">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta1">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta2">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta3">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta4">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta5">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+		</ol>
+        
+        <ol class="selectable" id="fila2">
+			<li class="ui-widget-content carta0">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta1">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta2">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta3">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta4">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+			<li class="ui-widget-content carta5">
+				<img src="../baraja/atras.jpg"/>
+			</li>
+		</ol>
+
+	</body>
+</html>
